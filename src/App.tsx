@@ -1,35 +1,78 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface PersonalData {
+    id: number;
+    title: string;
+    content: string;
 }
 
-export default App
+const API_URL = 'http://localhost:1337';
+
+const instance = axios.create({
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_API_TOKEN}`
+    },
+});
+
+const fetchArticles = async () => {
+    try {
+        const response = await instance.get(`${API_URL}/api/personals`);
+        return response?.data.data[0]?.attributes;
+    } catch (error) {
+        console.error('Error fetching articles:', error);
+        throw error;
+    }
+};
+
+
+
+const App = () => {
+    const [data, setData] = useState<[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const getArticles = async () => {
+            try {
+                const data = await fetchArticles();
+                setData(data);
+            } catch (error) {
+                setError('Error fetching articles');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getArticles();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    console.log(data);
+    console.log(data?.Experience?.workExperience);
+
+    return (
+        <div>
+            <h1>Articles</h1>
+            <ul>
+                {data?.Experience?.workExperience?.map((article, index) => (
+                    <li key={index}>
+                        <h2>{article.company}</h2>
+                        <p>{article.position}</p>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default App;
