@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-interface PersonalData {
-    id: number;
-    title: string;
-    content: string;
-}
+import Header from "./components/Header/Header.tsx";
+import GlobalStyles from "./components/GlobalStyles/GlobalStyles.ts";
+import Intro from "./components/Intro/Intro.tsx";
 
 const API_URL = 'http://localhost:1337';
 
@@ -17,7 +15,7 @@ const instance = axios.create({
     },
 });
 
-const fetchArticles = async () => {
+const fetchPersonalData = async () => {
     try {
         const response = await instance.get(`${API_URL}/api/personals`);
         return response?.data.data[0]?.attributes;
@@ -27,17 +25,15 @@ const fetchArticles = async () => {
     }
 };
 
-
-
 const App = () => {
     const [data, setData] = useState<[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const getArticles = async () => {
+        const getPersonalData = async () => {
             try {
-                const data = await fetchArticles();
+                const data = await fetchPersonalData();
                 setData(data);
             } catch (error) {
                 setError('Error fetching articles');
@@ -46,7 +42,7 @@ const App = () => {
             }
         };
 
-        getArticles();
+        getPersonalData();
     }, []);
 
     if (loading) {
@@ -61,17 +57,23 @@ const App = () => {
     console.log(data?.Experience?.workExperience);
 
     return (
-        <div>
-            <h1>Articles</h1>
-            <ul>
-                {data?.Experience?.workExperience?.map((article, index) => (
-                    <li key={index}>
-                        <h2>{article.company}</h2>
-                        <p>{article.position}</p>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <GlobalStyles />
+            <Header />
+            <Intro title={data?.Title} subtitle={data?.Subtitle}/>
+            <div>
+                <h3>{data?.Resume}</h3>
+                <ul>
+                    {data?.Experience?.workExperience?.map((item, index) => (
+                        <li key={index}>
+                            <h2>{item.company}</h2>
+                            <p>{item.position}</p>
+                            <p>{item.responsibilities}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </>
     );
 };
 
