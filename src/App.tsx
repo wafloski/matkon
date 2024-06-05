@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Header from "./components/Header/Header.tsx";
 import GlobalStyles from "./components/GlobalStyles/GlobalStyles.ts";
 import Intro from "./components/Intro/Intro.tsx";
+import AboutMe from "./components/AboutMe/AboutMe.tsx";
 
 const API_URL = 'http://localhost:1337';
 
@@ -61,6 +62,7 @@ const App = () => {
             <GlobalStyles />
             <Header />
             <Intro title={data?.Title} subtitle={data?.Subtitle}/>
+            <AboutMe />
             <div>
                 <h3>{data?.Resume}</h3>
                 <ul>

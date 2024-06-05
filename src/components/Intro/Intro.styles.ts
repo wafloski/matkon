@@ -34,7 +34,7 @@ const Intro = styled.section`
         left: 0;
         width: 100%;
         height: 100%;
-        background: url(${backgroundImage}) no-repeat center center/cover;
+        background: url(${backgroundImage}) no-repeat fixed center center/cover;
         opacity: 0.15; /* Zmienna przezroczystość tła */
     }
 `;
@@ -46,7 +46,7 @@ const TypingContainer = styled.div<TypingProps>`
     border-right: 3px solid #282c34;
     width: 520px;
     ${({ typingLength }) => css`
-        animation: ${typing} 10s steps(${typingLength}, end), ${blink} 1s step-end infinite;
+        animation: ${typing} 6s steps(${typingLength}, end), ${blink} 1s step-end infinite;
     `}
 `;
 
