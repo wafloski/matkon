@@ -5,6 +5,8 @@ import Header from "./components/Header/Header.tsx";
 import GlobalStyles from "./components/GlobalStyles/GlobalStyles.ts";
 import Intro from "./components/Intro/Intro.tsx";
 import AboutMe from "./components/AboutMe/AboutMe.tsx";
+import Experience from "./components/Experience/Experience.tsx";
+import { SectionContainer } from "./components/Common/Common.ts";
 
 const API_URL = 'http://localhost:1337';
 
@@ -54,27 +56,17 @@ const App = () => {
         return <div>{error}</div>;
     }
 
-    console.log(data);
-    console.log(data?.Experience?.workExperience);
-
     return (
         <>
             <GlobalStyles />
             <Header />
             <Intro title={data?.Title} subtitle={data?.Subtitle}/>
-            <AboutMe />
-            <div>
-                <h3>{data?.Resume}</h3>
-                <ul>
-                    {data?.Experience?.workExperience?.map((item, index) => (
-                        <li key={index}>
-                            <h2>{item.company}</h2>
-                            <p>{item.position}</p>
-                            <p>{item.responsibilities}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <SectionContainer>
+                <AboutMe title={data?.Title} content={data?.Resume}/>
+            </SectionContainer>
+            <SectionContainer>
+                <Experience content={data?.Experience?.workExperience}/>
+            </SectionContainer>
         </>
     );
 };
