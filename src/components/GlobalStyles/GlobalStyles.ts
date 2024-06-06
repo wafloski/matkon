@@ -10,13 +10,9 @@ const GlobalStyles = createGlobalStyle`
     
     :root {
         font-family: 'Inconsolata', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-        line-height: 1.5;
         font-weight: 400;
     
         color-scheme: light dark;
-        color: rgba(255, 255, 255, 0.87);
-        background-color: #242424;
-        box-sizing: border-box;
         font-synthesis: none;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
@@ -27,7 +23,6 @@ const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
-        font-family: 'Inconsolata', monospace;
         background-color: #f4f4f4;
         color: #333;
         line-height: 1.6;

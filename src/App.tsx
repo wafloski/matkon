@@ -6,7 +6,8 @@ import GlobalStyles from "./components/GlobalStyles/GlobalStyles.ts";
 import Intro from "./components/Intro/Intro.tsx";
 import AboutMe from "./components/AboutMe/AboutMe.tsx";
 import Experience from "./components/Experience/Experience.tsx";
-// import Skills from "./components/Skills/Skills.tsx";
+import Skills from "./components/Skills/Skills.tsx";
+import Education from "./components/Education/Education.tsx";
 import { SectionContainer } from "./components/Common/Common.ts";
 
 const API_URL = 'http://localhost:1337';
@@ -68,9 +69,12 @@ const App = () => {
             <SectionContainer id='resume'>
                 <Experience content={data?.Experience?.workExperience}/>
             </SectionContainer>
-            {/*<SectionContainer id='skills'>*/}
-            {/*    <Skills content={data?.Experience?.workExperience}/>*/}
-            {/*</SectionContainer>*/}
+            <SectionContainer id='skills'>
+                <Skills content={data?.Skills}/>
+            </SectionContainer>
+            <SectionContainer id='skills'>
+                <Education content={data?.Education}/>
+            </SectionContainer>
         </>
     );
 };

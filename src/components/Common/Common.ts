@@ -3,7 +3,7 @@ import styled from "styled-components";
 const SectionContainer = styled.div`
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     padding: 0 15px;
 
     @media (max-width: 1200px) {
@@ -40,7 +40,7 @@ const SectionTitle = styled.h3`
         position: absolute;
         left: 0;
         bottom: 0;
-        border-bottom: 2px solid #666;
+        border-bottom: 2px solid #777;
         width: 100%;
     }
 `;
