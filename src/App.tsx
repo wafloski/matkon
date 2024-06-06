@@ -6,7 +6,7 @@ import GlobalStyles from "./components/GlobalStyles/GlobalStyles.ts";
 import Intro from "./components/Intro/Intro.tsx";
 import AboutMe from "./components/AboutMe/AboutMe.tsx";
 import Experience from "./components/Experience/Experience.tsx";
-import Skills from "./components/Skills/Skills.tsx";
+// import Skills from "./components/Skills/Skills.tsx";
 import { SectionContainer } from "./components/Common/Common.ts";
 
 const API_URL = 'http://localhost:1337';
