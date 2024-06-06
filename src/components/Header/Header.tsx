@@ -18,7 +18,7 @@ const Header = () => {
                     <S.MenuItem><S.MenuLink href="#home">Home</S.MenuLink></S.MenuItem>
                     <S.MenuItem><S.MenuLink href="#about">About Me</S.MenuLink></S.MenuItem>
                     <S.MenuItem><S.MenuLink href="#services">Services</S.MenuLink></S.MenuItem>
-                    <S.MenuItem><S.MenuLink href="#contact">Resume</S.MenuLink></S.MenuItem>
+                    <S.MenuItem><S.MenuLink href="#resume">Resume</S.MenuLink></S.MenuItem>
                     <S.MenuItem><S.MenuLink href="#contact">Contact</S.MenuLink></S.MenuItem>
                 </S.Menu>
             </S.Nav>

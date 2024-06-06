@@ -27,19 +27,21 @@ const SectionContainer = styled.div`
 const SectionTitle = styled.h3`
     text-align: center;
     color: #333;
-    font-size: 30px;
+    font-size: 36px;
     text-transform: uppercase;
     margin-top: 80px;
+    padding-bottom: 10px;
     position: relative;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
 
     &::after {
         content: '';
         position: absolute;
         left: 0;
-        bottom: -10px;
-        height: 2px;
+        bottom: 0;
+        border-bottom: 2px solid #666;
         width: 100%;
-        background: #666;
     }
 `;
 

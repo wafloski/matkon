@@ -44,14 +44,14 @@ const TypingContainer = styled.div<TypingProps>`
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid #282c34;
-    width: 520px;
+    width: 577px;
     ${({ typingLength }) => css`
         animation: ${typing} 6s steps(${typingLength}, end), ${blink} 1s step-end infinite;
     `}
 `;
 
 const Title = styled.h1`
-    font-size: 54px;
+    font-size: 60px;
     margin: 0;
     display: inline-block;
     z-index: 1;

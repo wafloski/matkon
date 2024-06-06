@@ -6,6 +6,7 @@ import GlobalStyles from "./components/GlobalStyles/GlobalStyles.ts";
 import Intro from "./components/Intro/Intro.tsx";
 import AboutMe from "./components/AboutMe/AboutMe.tsx";
 import Experience from "./components/Experience/Experience.tsx";
+import Skills from "./components/Skills/Skills.tsx";
 import { SectionContainer } from "./components/Common/Common.ts";
 
 const API_URL = 'http://localhost:1337';
@@ -20,7 +21,7 @@ const instance = axios.create({
 
 const fetchPersonalData = async () => {
     try {
-        const response = await instance.get(`${API_URL}/api/personals`);
+        const response = await instance.get(`${API_URL}/api/personals?populate=*`);
         return response?.data.data[0]?.attributes;
     } catch (error) {
         console.error('Error fetching articles:', error);
@@ -61,12 +62,15 @@ const App = () => {
             <GlobalStyles />
             <Header />
             <Intro title={data?.Title} subtitle={data?.Subtitle}/>
-            <SectionContainer>
+            <SectionContainer id='about'>
                 <AboutMe title={data?.Title} content={data?.Resume}/>
             </SectionContainer>
-            <SectionContainer>
+            <SectionContainer id='resume'>
                 <Experience content={data?.Experience?.workExperience}/>
             </SectionContainer>
+            {/*<SectionContainer id='skills'>*/}
+            {/*    <Skills content={data?.Experience?.workExperience}/>*/}
+            {/*</SectionContainer>*/}
         </>
     );
 };

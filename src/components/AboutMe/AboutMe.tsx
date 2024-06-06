@@ -5,16 +5,14 @@ interface AboutMeProps {
     title: string;
 }
 
-const AboutMe = ({ content, title }: AboutMeProps) => {
-    return (
-        <S.AboutMeContainer>
-            <div className='photo'></div>
-            <div className='bio'>
-                <h2>{title}</h2>
-                <p>{content}</p>
-            </div>
-        </S.AboutMeContainer>
-    )
-}
+const AboutMe = ({ content, title }: AboutMeProps) => (
+    <S.AboutMeContainer>
+        <S.Photo />
+        <S.Bio>
+            <h2>{title}</h2>
+            <p>{content}</p>
+        </S.Bio>
+    </S.AboutMeContainer>
+);
 
 export default AboutMe;
