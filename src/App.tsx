@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Header from "./components/Header/Header.tsx";
-import GlobalStyles from "./components/GlobalStyles/GlobalStyles.ts";
-import Intro from "./components/Intro/Intro.tsx";
-import AboutMe from "./components/AboutMe/AboutMe.tsx";
-import Experience from "./components/Experience/Experience.tsx";
-import Skills from "./components/Skills/Skills.tsx";
-import Education from "./components/Education/Education.tsx";
-import { SectionContainer } from "./components/Common/Common.ts";
+import Header from './components/Header/Header.tsx';
+import GlobalStyles from './components/GlobalStyles/GlobalStyles.ts';
+import Intro from './components/Intro/Intro.tsx';
+import AboutMe from './components/AboutMe/AboutMe.tsx';
+import Experience from './components/Experience/Experience.tsx';
+import Skills from './components/Skills/Skills.tsx';
+import Education from './components/Education/Education.tsx';
+import { SectionContainer } from './components/Common/Common.ts';
 
 const API_URL = 'http://localhost:1337';
 

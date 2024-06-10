@@ -1,6 +1,6 @@
-import { SectionTitle } from "../Common/Common.ts";
+import { SectionTitle } from '../Common/Common.ts';
 
-import * as S from "./Experience.styles";
+import * as S from './Experience.styles';
 
 interface Job {
     company: string;

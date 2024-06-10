@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import backgroundImage from '../../assets/avatar.jpg';
 

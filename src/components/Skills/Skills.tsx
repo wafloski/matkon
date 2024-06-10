@@ -1,4 +1,4 @@
-import { SectionTitle } from "../Common/Common.ts";
+import { SectionTitle } from '../Common/Common.ts';
 
 import * as S from './Skills.styled';
 

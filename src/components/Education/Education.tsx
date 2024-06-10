@@ -1,5 +1,5 @@
-import {SectionTitle} from "../Common/Common.ts";
-import * as S from "./Education.styles";
+import {SectionTitle} from '../Common/Common.ts';
+import * as S from './Education.styles';
 
 interface School {
     id: number;

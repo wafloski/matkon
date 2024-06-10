@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const JobList = styled.ul`
     list-style-type: none;
