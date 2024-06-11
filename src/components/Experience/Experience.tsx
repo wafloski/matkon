@@ -1,15 +1,7 @@
 import { SectionTitle } from '../Common/Common.ts';
 
 import * as S from './Experience.styles';
-
-interface Job {
-    company: string;
-    end: string;
-    start: string;
-    responsibilities: string[];
-    position: string;
-    logo: string;
-}
+import { Job } from '../../types/types.ts';
 
 interface ExperienceProps {
     content: Job[]
@@ -17,7 +9,7 @@ interface ExperienceProps {
 
 const Experience = ({ content }: ExperienceProps) => (
     <>
-        <SectionTitle>My Resume</SectionTitle>
+        <SectionTitle>Work Experience</SectionTitle>
         <S.JobList>
             {content?.map((item, index) => (
                 <S.JobItem key={index}>

@@ -46,7 +46,7 @@ const TypingContainer = styled.div<TypingProps>`
     border-right: 3px solid #282c34;
     width: 577px;
     ${({ typingLength }) => css`
-        animation: ${typing} 6s steps(${typingLength}, end), ${blink} 1s step-end infinite;
+        animation: ${typing} 3s steps(${typingLength}, end), ${blink} 1s step-end infinite;
     `}
 `;
 

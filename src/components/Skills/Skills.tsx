@@ -1,11 +1,7 @@
 import { SectionTitle } from '../Common/Common.ts';
 
 import * as S from './Skills.styled';
-
-interface Skill {
-    id: number;
-    Skill: string;
-}
+import { Skill } from '../../types/types.ts';
 
 interface SkillsProps {
     content: Skill[];
@@ -13,7 +9,7 @@ interface SkillsProps {
 
 const Skills = ({ content }: SkillsProps) => (
     <>
-        <SectionTitle>My Skills</SectionTitle>
+        <SectionTitle>Skills</SectionTitle>
         <S.SkillsContainer>
             {content.map((item) => <S.SkillItem key={item.id}>{item.Skill} </S.SkillItem>)}
         </S.SkillsContainer>

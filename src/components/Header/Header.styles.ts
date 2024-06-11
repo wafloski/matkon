@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-scroll';
 
 interface MenuProps {
     isOpen: boolean;
@@ -59,13 +60,11 @@ const Menu = styled.ul<MenuProps>`
 
 const MenuItem = styled.li`
     margin: 0;
-`;
-
-const MenuLink = styled.a`
+    cursor: pointer;
     color: white;
     text-decoration: none;
     font-size: 16px;
-    
+
     &:hover {
         text-decoration: underline;
     }
@@ -74,6 +73,14 @@ const MenuLink = styled.a`
         padding: 10px 0;
         width: 100%;
         text-align: center;
+    }
+`;
+
+const MenuLink = styled(Link)`
+    color: inherit;
+    
+    &.active {
+        color: #0B9FE2;
     }
 `;
 

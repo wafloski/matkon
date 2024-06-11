@@ -1,6 +1,25 @@
 import * as S from './Header.styles.ts';
 import { useState } from 'react';
 
+const menuItems = [
+    {
+        id: 'home',
+        label: 'Home'
+    },
+    {
+        id: 'about',
+        label: 'About Me'
+    },
+    {
+        id: 'resume',
+        label: 'Resume'
+    },
+    {
+        id: 'contact',
+        label: 'Contact'
+    }
+];
+
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -15,11 +34,13 @@ const Header = () => {
             </S.MenuButton>
             <S.Nav>
                 <S.Menu isOpen={isOpen}>
-                    <S.MenuItem><S.MenuLink href="#home">Home</S.MenuLink></S.MenuItem>
-                    <S.MenuItem><S.MenuLink href="#about">About Me</S.MenuLink></S.MenuItem>
-                    <S.MenuItem><S.MenuLink href="#services">Services</S.MenuLink></S.MenuItem>
-                    <S.MenuItem><S.MenuLink href="#resume">Resume</S.MenuLink></S.MenuItem>
-                    <S.MenuItem><S.MenuLink href="#contact">Contact</S.MenuLink></S.MenuItem>
+                    {menuItems.map((item) => (
+                        <S.MenuItem>
+                            <S.MenuLink to={item.id} smooth={true} offset={-100} spy={true} duration={500} activeClass="active">
+                                {item.label}
+                            </S.MenuLink>
+                        </S.MenuItem>
+                    ))}
                 </S.Menu>
             </S.Nav>
         </S.Header>

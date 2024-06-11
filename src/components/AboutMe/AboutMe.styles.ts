@@ -9,21 +9,23 @@ const AboutMeContainer = styled.div`
 `;
 
 const Photo = styled.div`
-    width: 50%;
-    height: 500px;
+    width: calc(50% + 20px);
+    height: 580px;
     background: url(${backgroundImage}) no-repeat center center/cover;
+    position: relative;
 `;
 
 const Bio = styled.div`
-    position: relative;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    width: 50%;
+    position: absolute;
+    width: calc(50% + 20px);
     background-color: #333;
     color: #fff;
-    left: -40px;
     padding: 40px;
     font-size: 20px;
+    right: 0;
+    top: 40px;
+    bottom: 40px;
+    height: 500px;
 
     h2 {
         position: relative;

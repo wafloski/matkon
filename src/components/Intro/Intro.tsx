@@ -9,7 +9,7 @@ const Intro = ({ title, subtitle }: IntroProps) => {
     const introText = `I'm ${title}`;
 
     return (
-        <S.Intro>
+        <S.Intro id='home'>
             <S.TypingContainer typingLength={introText.length}>
                 <S.Title>{introText}</S.Title>
             </S.TypingContainer>

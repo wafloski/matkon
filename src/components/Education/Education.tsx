@@ -1,12 +1,6 @@
-import {SectionTitle} from '../Common/Common.ts';
+import { SectionTitle } from '../Common/Common.ts';
 import * as S from './Education.styles';
-
-interface School {
-    id: number;
-    Course: string;
-    School: string;
-    Years: string;
-}
+import { School } from '../../types/types.ts';
 
 interface EducationProps {
     content: School[]
@@ -14,7 +8,7 @@ interface EducationProps {
 
 const Education = ({ content }: EducationProps) => (
     <>
-        <SectionTitle>My Education</SectionTitle>
+        <SectionTitle>Education</SectionTitle>
         <S.SchoolList>
             {content.map((item) => <S.SchoolItem key={item.id}>{item.Years} - {item.School} - {item.Course}</S.SchoolItem>)}
         </S.SchoolList>

@@ -8,7 +8,9 @@ import AboutMe from './components/AboutMe/AboutMe.tsx';
 import Experience from './components/Experience/Experience.tsx';
 import Skills from './components/Skills/Skills.tsx';
 import Education from './components/Education/Education.tsx';
+import Footer from './components/Footer/Footer.tsx';
 import { SectionContainer } from './components/Common/Common.ts';
+import { AllData } from './types/types.ts';
 
 const API_URL = 'http://localhost:1337';
 
@@ -31,7 +33,7 @@ const fetchPersonalData = async () => {
 };
 
 const App = () => {
-    const [data, setData] = useState<[]>([]);
+    const [data, setData] = useState<AllData>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -67,7 +69,7 @@ const App = () => {
                 <AboutMe title={data?.Title} content={data?.Resume}/>
             </SectionContainer>
             <SectionContainer id='resume'>
-                <Experience content={data?.Experience?.workExperience}/>
+                <Experience content={data?.WorkExperience}/>
             </SectionContainer>
             <SectionContainer id='skills'>
                 <Skills content={data?.Skills}/>
@@ -75,6 +77,7 @@ const App = () => {
             <SectionContainer id='skills'>
                 <Education content={data?.Education}/>
             </SectionContainer>
+            <Footer content={data?.Footer}/>
         </>
     );
 };
