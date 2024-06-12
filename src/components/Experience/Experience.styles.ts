@@ -26,7 +26,7 @@ const Position = styled.p`
 `;
 
 const Logo = styled.img`
-    width: 100px;
+    height: 24px;
 `;
 
 const Date = styled.p`

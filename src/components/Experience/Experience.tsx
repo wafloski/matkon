@@ -15,16 +15,18 @@ const Experience = ({ content }: ExperienceProps) => (
                 <S.JobItem key={index}>
                     <S.Details style={{ display: 'flex' }}>
                         <div>
-                            <S.Company>{item.company}</S.Company>
-                            <S.Position>{item.position}</S.Position>
-                            <S.Date>{item.start} - {item.end}</S.Date>
+                            <S.Company>{item.Company}</S.Company>
+                            <S.Position>{item.Position}</S.Position>
+                            <S.Date>{item.Start} - {item.End}</S.Date>
                         </div>
                         <div>
-                            <S.Logo src={item.logo} alt={item.company}/>
+                            <a href={item.WorkURL}>
+                                <S.Logo src={item.LogoURL} alt={item.Company}/>
+                            </a>
                         </div>
                     </S.Details>
                     <S.Responsibilities>
-                        {item.responsibilities.map((item, index) => <li key={index}>{item}</li>)}
+                        {item.Responsibilities.map((item, index) => <li key={index}>{item.Duty}</li>)}
                     </S.Responsibilities>
                 </S.JobItem>
             ))}

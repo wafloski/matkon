@@ -22,9 +22,32 @@ const instance = axios.create({
     },
 });
 
+const initialData = {
+    Title: '',
+    Subtitle: '',
+    Resume: '',
+    WorkExperience: [],
+    Education: [],
+    Skills: [],
+    Footer: ''
+};
+
 const fetchPersonalData = async () => {
     try {
-        const response = await instance.get(`${API_URL}/api/personals?populate=*`);
+        const response = await instance.get(`${API_URL}/api/personals?populate=*`, {
+            params: {
+                populate: {
+                    '*': true,
+                    Skills,
+                    Education,
+                    WorkExperience: {
+                        populate: {
+                            Responsibilities: true
+                        }
+                    }
+                }
+            }
+        });
         return response?.data.data[0]?.attributes;
     } catch (error) {
         console.error('Error fetching articles:', error);
@@ -33,7 +56,7 @@ const fetchPersonalData = async () => {
 };
 
 const App = () => {
-    const [data, setData] = useState<AllData>([]);
+    const [data, setData] = useState<AllData>(initialData);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
