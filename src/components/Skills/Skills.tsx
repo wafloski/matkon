@@ -9,7 +9,7 @@ interface SkillsProps {
 
 const Skills = ({ content }: SkillsProps) => (
     <>
-        <SectionTitle>Main Skills</SectionTitle>
+        <SectionTitle>Key Skills</SectionTitle>
         <S.SkillsContainer>
             {content.map((item) => <S.SkillItem key={item.id}>{item.Skill} </S.SkillItem>)}
         </S.SkillsContainer>

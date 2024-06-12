@@ -9,6 +9,9 @@ import Experience from './components/Experience/Experience.tsx';
 import Skills from './components/Skills/Skills.tsx';
 import Education from './components/Education/Education.tsx';
 import Footer from './components/Footer/Footer.tsx';
+import Contact from './components/Contact/Contact.tsx';
+import Interests from './components/Interests/Interests.tsx';
+
 import { SectionContainer } from './components/Common/Common.ts';
 import { AllData } from './types/types.ts';
 
@@ -22,13 +25,17 @@ const instance = axios.create({
     },
 });
 
-const initialData = {
+const initialData: AllData = {
     Title: '',
     Subtitle: '',
     Resume: '',
     WorkExperience: [],
     Education: [],
     Skills: [],
+    Interests: [],
+    Location: '',
+    Phone: '',
+    Email: '',
     Footer: ''
 };
 
@@ -40,6 +47,7 @@ const fetchPersonalData = async () => {
                     '*': true,
                     Skills,
                     Education,
+                    Interests,
                     WorkExperience: {
                         populate: {
                             Responsibilities: true
@@ -99,6 +107,12 @@ const App = () => {
             </SectionContainer>
             <SectionContainer id='skills'>
                 <Education content={data?.Education}/>
+            </SectionContainer>
+            <SectionContainer id='interests'>
+                <Interests content={data?.Interests}/>
+            </SectionContainer>
+            <SectionContainer id='contact'>
+                <Contact mail={data?.Email} location={data?.Location} phone={data?.Phone}/>
             </SectionContainer>
             <Footer content={data?.Footer}/>
         </>

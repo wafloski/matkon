@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const SectionContainer = styled.div`
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto 40px;
+    margin: 0 auto 100px;
     padding: 0 15px;
 
     @media (max-width: 1200px) {

@@ -26,6 +26,9 @@ const Bio = styled.div`
     top: 40px;
     bottom: 40px;
     height: 500px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 
     h2 {
         position: relative;
@@ -43,4 +46,10 @@ const Bio = styled.div`
     }
 `;
 
-export { AboutMeContainer, Photo, Bio };
+const SocialsWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+`;
+
+export { AboutMeContainer, Photo, Bio, SocialsWrapper };

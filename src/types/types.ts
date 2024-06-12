@@ -26,12 +26,21 @@ export interface Skill {
     Skill: string;
 }
 
+export interface Interest {
+    id: number;
+    Interest: string;
+}
+
 export interface AllData {
     Title: string;
     Subtitle: string;
     Resume: string;
-    WorkExperience: Job[],
-    Education: School[],
-    Skills: Skill[],
-    Footer: string,
+    WorkExperience: Job[];
+    Education: School[];
+    Skills: Skill[];
+    Interests: Interest[];
+    Location: string;
+    Phone: string;
+    Email: string;
+    Footer: string;
 }
