@@ -1,8 +1,11 @@
+import { ReactSVG } from 'react-svg';
+
 import * as S from './AboutMe.styles';
 
-import { ReactSVG } from 'react-svg';
-import githubLink from '../../assets/github.svg';
-import linkedinLink from '../../assets/linkedin.svg';
+import githubSVG from '../../assets/github.svg';
+import linkedinSVG from '../../assets/linkedin.svg';
+
+import { githubURL, linkedinURL } from '../../constants/constants.ts';
 
 interface AboutMeProps {
     content: string;
@@ -18,11 +21,11 @@ const AboutMe = ({ content, title }: AboutMeProps) => (
                 <p>{content}</p>
             </div>
             <S.SocialsWrapper>
-                <a href='https://github.com/wafloski' target='_blank'>
-                    <ReactSVG src={githubLink} style={{width: '30px', height: '30px', fill: '#fff'}}/>
+                <a href={githubURL} target='_blank'>
+                    <ReactSVG src={githubSVG} style={{width: '30px', height: '30px', fill: '#fff'}}/>
                 </a>
-                <a href='https://www.linkedin.com/in/mateusz-konopka-waflosky/' target='_blank'>
-                    <ReactSVG src={linkedinLink} style={{width: '30px', height: '30px', fill: '#fff'}}/>
+                <a href={linkedinURL} target='_blank'>
+                    <ReactSVG src={linkedinSVG} style={{width: '30px', height: '30px', fill: '#fff'}}/>
                 </a>
             </S.SocialsWrapper>
         </S.Bio>
