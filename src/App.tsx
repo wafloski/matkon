@@ -17,6 +17,38 @@ import { AllData } from './types/types.ts';
 
 const API_URL = 'http://localhost:1337';
 
+const GRAPHQL_URL = 'https://mkapi.dkonto.pl/graphql';
+
+export const fetchPosts = async () => {
+    const query = `
+    query GetPosts {
+      posts {
+        nodes {
+          id
+          title
+          content
+        }
+      }
+    }
+  `;
+
+    try {
+        const response = await axios.post(GRAPHQL_URL, {
+            query,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${token}`
+            },
+        });
+
+        return response.data.data.posts.nodes;
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        throw error;
+    }
+};
+
 const instance = axios.create({
     baseURL: API_URL,
     headers: {
@@ -64,57 +96,84 @@ const fetchPersonalData = async () => {
 };
 
 const App = () => {
-    const [data, setData] = useState<AllData>(initialData);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    // const [data, setData] = useState<AllData>(initialData);
+    // const [loading, setLoading] = useState<boolean>(true);
+    // const [error, setError] = useState<string | null>(null);
+
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const getPersonalData = async () => {
+        const getPosts = async () => {
             try {
-                const data = await fetchPersonalData();
-                setData(data);
+                // const token = await getToken();
+                const posts = await fetchPosts();
+                setPosts(posts);
             } catch (error) {
-                setError('Error fetching articles');
+                setError(error);
             } finally {
                 setLoading(false);
             }
         };
 
-        getPersonalData();
+        getPosts();
     }, []);
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
+    // useEffect(() => {
+    //     const getPersonalData = async () => {
+    //         try {
+    //             const data = await fetchPersonalData();
+    //             setData(data);
+    //         } catch (error) {
+    //             setError('Error fetching articles');
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //
+    //     getPersonalData();
+    // }, []);
+    //
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
+    //
+    // if (error) {
+    //     return <div>{error}</div>;
+    // }
 
     return (
         <>
+            <h1>Posts</h1>
+            {posts.map(post => (
+                <div key={post.id}>
+                    <h2>{post.title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                </div>
+            ))}
             <GlobalStyles />
             <Header />
-            <Intro title={data?.Title} subtitle={data?.Subtitle}/>
-            <SectionContainer id='about'>
-                <AboutMe title={data?.Title} content={data?.Resume}/>
-            </SectionContainer>
-            <SectionContainer id='resume'>
-                <Experience content={data?.WorkExperience}/>
-            </SectionContainer>
-            <SectionContainer id='skills'>
-                <Skills content={data?.Skills}/>
-            </SectionContainer>
-            <SectionContainer id='skills'>
-                <Education content={data?.Education}/>
-            </SectionContainer>
-            <SectionContainer id='interests'>
-                <Interests content={data?.Interests}/>
-            </SectionContainer>
-            <SectionContainer id='contact'>
-                <Contact mail={data?.Email} location={data?.Location} phone={data?.Phone}/>
-            </SectionContainer>
-            <Footer content={data?.Footer}/>
+            {/*<Intro title={data?.Title} subtitle={data?.Subtitle}/>*/}
+            {/*<SectionContainer id='about'>*/}
+            {/*    <AboutMe title={data?.Title} content={data?.Resume}/>*/}
+            {/*</SectionContainer>*/}
+            {/*<SectionContainer id='resume'>*/}
+            {/*    <Experience content={data?.WorkExperience}/>*/}
+            {/*</SectionContainer>*/}
+            {/*<SectionContainer id='skills'>*/}
+            {/*    <Skills content={data?.Skills}/>*/}
+            {/*</SectionContainer>*/}
+            {/*<SectionContainer id='skills'>*/}
+            {/*    <Education content={data?.Education}/>*/}
+            {/*</SectionContainer>*/}
+            {/*<SectionContainer id='interests'>*/}
+            {/*    <Interests content={data?.Interests}/>*/}
+            {/*</SectionContainer>*/}
+            {/*<SectionContainer id='contact'>*/}
+            {/*    <Contact mail={data?.Email} location={data?.Location} phone={data?.Phone}/>*/}
+            {/*</SectionContainer>*/}
+            {/*<Footer content={data?.Footer}/>*/}
         </>
     );
 };
