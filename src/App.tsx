@@ -21,16 +21,24 @@ const GRAPHQL_URL = 'https://mkapi.dkonto.pl/graphql';
 
 export const fetchPosts = async () => {
     const query = `
-    query GetPosts {
-      posts {
-        nodes {
-          id
-          title
-          content
+        query NewQuery {
+            educations {
+                nodes {
+                    educationItem {
+                        years
+                        school
+                        course
+                    }
+                }
+            }
+            posts {
+                nodes {
+                    content
+                    title
+                }
+            }
         }
-      }
-    }
-  `;
+    `;
 
     try {
         const response = await axios.post(GRAPHQL_URL, {
@@ -38,11 +46,10 @@ export const fetchPosts = async () => {
         }, {
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${token}`
             },
         });
 
-        return response.data.data.posts.nodes;
+        return response.data;
     } catch (error) {
         console.error('Error fetching posts:', error);
         throw error;
@@ -109,6 +116,7 @@ const App = () => {
             try {
                 // const token = await getToken();
                 const posts = await fetchPosts();
+                const educations = await fetchEducations();
                 setPosts(posts);
             } catch (error) {
                 setError(error);
