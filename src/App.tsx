@@ -15,11 +15,13 @@ import Interests from './components/Interests/Interests.tsx';
 import { SectionContainer } from './components/Common/Common.ts';
 import { AllData } from './types/types.ts';
 
+import { findPostContentByTitle } from './helpers/helpers.tsx';
+
 const API_URL = 'http://localhost:1337';
 
 const GRAPHQL_URL = 'https://mkapi.dkonto.pl/graphql';
 
-export const fetchPosts = async () => {
+export const fetchData = async () => {
     const query = `
         query NewQuery {
             educations {
@@ -56,14 +58,6 @@ export const fetchPosts = async () => {
     }
 };
 
-const instance = axios.create({
-    baseURL: API_URL,
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${import.meta.env.VITE_API_TOKEN}`
-    },
-});
-
 const initialData: AllData = {
     Title: '',
     Subtitle: '',
@@ -76,30 +70,6 @@ const initialData: AllData = {
     Phone: '',
     Email: '',
     Footer: ''
-};
-
-const fetchPersonalData = async () => {
-    try {
-        const response = await instance.get(`${API_URL}/api/personals?populate=*`, {
-            params: {
-                populate: {
-                    '*': true,
-                    Skills,
-                    Education,
-                    Interests,
-                    WorkExperience: {
-                        populate: {
-                            Responsibilities: true
-                        }
-                    }
-                }
-            }
-        });
-        return response?.data.data[0]?.attributes;
-    } catch (error) {
-        console.error('Error fetching articles:', error);
-        throw error;
-    }
 };
 
 const App = () => {
@@ -115,8 +85,8 @@ const App = () => {
         const getPosts = async () => {
             try {
                 // const token = await getToken();
-                const posts = await fetchPosts();
-                const educations = await fetchEducations();
+                const posts = await fetchData();
+                console.log(posts);
                 setPosts(posts);
             } catch (error) {
                 setError(error);
@@ -128,44 +98,18 @@ const App = () => {
         getPosts();
     }, []);
 
-    // useEffect(() => {
-    //     const getPersonalData = async () => {
-    //         try {
-    //             const data = await fetchPersonalData();
-    //             setData(data);
-    //         } catch (error) {
-    //             setError('Error fetching articles');
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     };
-    //
-    //     getPersonalData();
-    // }, []);
-    //
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
-    //
-    // if (error) {
-    //     return <div>{error}</div>;
-    // }
+    const title: string  = findPostContentByTitle(posts, 'Title');
+    const subtitle: string  = findPostContentByTitle(posts, 'Subtitle');
+    const resume: string  = findPostContentByTitle(posts, 'Resume');
 
     return (
         <>
-            <h1>Posts</h1>
-            {posts.map(post => (
-                <div key={post.id}>
-                    <h2>{post.title}</h2>
-                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
-                </div>
-            ))}
             <GlobalStyles />
             <Header />
-            {/*<Intro title={data?.Title} subtitle={data?.Subtitle}/>*/}
-            {/*<SectionContainer id='about'>*/}
-            {/*    <AboutMe title={data?.Title} content={data?.Resume}/>*/}
-            {/*</SectionContainer>*/}
+            <Intro title={title} subtitle={subtitle}/>
+            <SectionContainer id='about'>
+                <AboutMe title={title} content={resume}/>
+            </SectionContainer>
             {/*<SectionContainer id='resume'>*/}
             {/*    <Experience content={data?.WorkExperience}/>*/}
             {/*</SectionContainer>*/}
