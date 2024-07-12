@@ -1,6 +1,6 @@
 import * as S from './Intro.styles';
 
-import {decode} from 'html-entities';
+import { decode } from 'html-entities';
 
 interface IntroProps {
     title: string;
@@ -9,8 +9,6 @@ interface IntroProps {
 
 const Intro = ({ title, subtitle }: IntroProps) => {
     const introText = `I'm ${title}`;
-
-    console.log()
 
     return (
         <S.Intro id='home'>

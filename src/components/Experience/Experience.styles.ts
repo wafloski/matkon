@@ -33,9 +33,11 @@ const Date = styled.p`
     font-size: 20px;
 `;
 
-const Responsibilities = styled.ul`
-    font-size: 16px;
-    font-family: "Abel", sans-serif;
+const Responsibilities = styled.div`
+    ul {
+        font-size: 16px;
+        font-family: "Abel", sans-serif;
+    }
 `;
 
 export { JobList, JobItem, Details, Company, Position, Logo, Date, Responsibilities };

@@ -11,7 +11,7 @@ const Skills = ({ content }: SkillsProps) => (
     <>
         <SectionTitle>Key Skills</SectionTitle>
         <S.SkillsContainer>
-            {content.map((item) => <S.SkillItem key={item.id}>{item.Skill} </S.SkillItem>)}
+            {content?.map(({ title}, index) => <S.SkillItem key={index}>{title} </S.SkillItem>)}
         </S.SkillsContainer>
     </>
 );

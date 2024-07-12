@@ -13,17 +13,20 @@ import Contact from './components/Contact/Contact.tsx';
 import Interests from './components/Interests/Interests.tsx';
 
 import { SectionContainer } from './components/Common/Common.ts';
-import { AllData } from './types/types.ts';
 
-import { findPostContentByTitle } from './helpers/helpers.tsx';
-
-const API_URL = 'http://localhost:1337';
+import { findContentByTitle } from './helpers/helpers.tsx';
 
 const GRAPHQL_URL = 'https://mkapi.dkonto.pl/graphql';
 
 export const fetchData = async () => {
     const query = `
         query NewQuery {
+            posts {
+                nodes {
+                    content
+                    title
+                }
+            }
             educations {
                 nodes {
                     educationItem {
@@ -33,10 +36,27 @@ export const fetchData = async () => {
                     }
                 }
             }
-            posts {
+            skills(first: 20, where: {orderby: {field: MODIFIED, order: ASC}}) {
                 nodes {
-                    content
                     title
+                }
+            }
+            interests(where: {orderby: {field: MODIFIED, order: ASC}}) {
+                nodes {
+                    title
+                }
+            }
+            experiences {
+                nodes {
+                    experienceItem {
+                        company
+                        enddate
+                        position
+                        startdate
+                        responsibility
+                        logourl
+                        companyurl
+                    }
                 }
             }
         }
@@ -58,36 +78,16 @@ export const fetchData = async () => {
     }
 };
 
-const initialData: AllData = {
-    Title: '',
-    Subtitle: '',
-    Resume: '',
-    WorkExperience: [],
-    Education: [],
-    Skills: [],
-    Interests: [],
-    Location: '',
-    Phone: '',
-    Email: '',
-    Footer: ''
-};
-
 const App = () => {
-    // const [data, setData] = useState<AllData>(initialData);
-    // const [loading, setLoading] = useState<boolean>(true);
-    // const [error, setError] = useState<string | null>(null);
-
-    const [posts, setPosts] = useState([]);
+    const [data, setData] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const getPosts = async () => {
+        const getData = async () => {
             try {
-                // const token = await getToken();
-                const posts = await fetchData();
-                console.log(posts);
-                setPosts(posts);
+                const { data } = await fetchData();
+                setData(data);
             } catch (error) {
                 setError(error);
             } finally {
@@ -95,12 +95,24 @@ const App = () => {
             }
         };
 
-        getPosts();
+        getData();
     }, []);
 
-    const title: string  = findPostContentByTitle(posts, 'Title');
-    const subtitle: string  = findPostContentByTitle(posts, 'Subtitle');
-    const resume: string  = findPostContentByTitle(posts, 'Resume');
+    const title: string  = findContentByTitle(data, 'Title');
+    const subtitle: string  = findContentByTitle(data, 'Subtitle');
+    const resume: string  = findContentByTitle(data, 'Resume');
+    const email: string  = findContentByTitle(data, 'Email');
+    const location: string  = findContentByTitle(data, 'Location');
+    const phone: string  = findContentByTitle(data, 'Phone');
+    const footer: string  = findContentByTitle(data, 'Footer');
+    const education = data?.educations?.nodes;
+    const skills = data?.skills?.nodes;
+    const interests = data?.interests?.nodes;
+    const experience = data?.experiences?.nodes;
+
+    console.log(data);
+    console.log(data?.experiences?.nodes);
+    console.log(experience);
 
     return (
         <>
@@ -110,22 +122,22 @@ const App = () => {
             <SectionContainer id='about'>
                 <AboutMe title={title} content={resume}/>
             </SectionContainer>
-            {/*<SectionContainer id='resume'>*/}
-            {/*    <Experience content={data?.WorkExperience}/>*/}
-            {/*</SectionContainer>*/}
-            {/*<SectionContainer id='skills'>*/}
-            {/*    <Skills content={data?.Skills}/>*/}
-            {/*</SectionContainer>*/}
-            {/*<SectionContainer id='skills'>*/}
-            {/*    <Education content={data?.Education}/>*/}
-            {/*</SectionContainer>*/}
-            {/*<SectionContainer id='interests'>*/}
-            {/*    <Interests content={data?.Interests}/>*/}
-            {/*</SectionContainer>*/}
-            {/*<SectionContainer id='contact'>*/}
-            {/*    <Contact mail={data?.Email} location={data?.Location} phone={data?.Phone}/>*/}
-            {/*</SectionContainer>*/}
-            {/*<Footer content={data?.Footer}/>*/}
+            <SectionContainer id='resume'>
+                <Experience content={experience}/>
+            </SectionContainer>
+            <SectionContainer id='skills'>
+                <Skills content={skills}/>
+            </SectionContainer>
+            <SectionContainer id='educations'>
+                <Education content={education}/>
+            </SectionContainer>
+            <SectionContainer id='interests'>
+                <Interests content={interests}/>
+            </SectionContainer>
+            <SectionContainer id='contact'>
+                <Contact mail={email} location={location} phone={phone}/>
+            </SectionContainer>
+            <Footer content={footer}/>
         </>
     );
 };

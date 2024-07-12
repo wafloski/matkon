@@ -1,34 +1,33 @@
 export interface School {
-    id: number;
-    Course: string;
-    School: string;
-    Years: string;
+    course: string;
+    school: string;
+    years: string;
 }
 
-export interface Responsibility {
-    id: number;
-    Duty: string;
+export interface EducationEntry {
+    educationItem: School;
 }
 
 export interface Job {
-    id: number;
-    Company: string;
-    End: string;
-    Start: string;
-    Responsibilities: Responsibility[];
-    Position: string;
-    LogoURL: string;
-    WorkURL: string;
+    company: string;
+    enddate: string;
+    startdate: string;
+    responsibility: string;
+    position: string;
+    logourl: string;
+    companyurl: string;
+}
+
+export interface ExperienceEntry {
+    experienceItem: Job;
 }
 
 export interface Skill {
-    id: number;
-    Skill: string;
+    title: string;
 }
 
 export interface Interest {
-    id: number;
-    Interest: string;
+    title: string;
 }
 
 export interface AllData {

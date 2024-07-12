@@ -34,8 +34,8 @@ const Header = () => {
             </S.MenuButton>
             <S.Nav>
                 <S.Menu isOpen={isOpen}>
-                    {menuItems.map((item) => (
-                        <S.MenuItem>
+                    {menuItems.map((item, index) => (
+                        <S.MenuItem key={index}>
                             <S.MenuLink to={item.id} smooth={true} offset={-100} spy={true} duration={500} activeClass="active">
                                 {item.label}
                             </S.MenuLink>

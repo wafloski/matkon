@@ -11,7 +11,7 @@ const Interests = ({ content }: InterestsProps) => (
     <>
         <SectionTitle>Interests</SectionTitle>
         <S.InterestsContainer>
-            {content?.map((item) => <S.InterestItem key={item.id}>{item.Interest} </S.InterestItem>)}
+            {content?.map(({ title}, index) => <S.InterestItem key={index}>{title} </S.InterestItem>)}
         </S.InterestsContainer>
     </>
 );
