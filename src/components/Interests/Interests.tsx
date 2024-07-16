@@ -4,16 +4,18 @@ import * as S from './Interests.styled';
 import { Interest } from '../../types/types.ts';
 
 interface InterestsProps {
-    content: Interest[];
+  content: Interest[];
 }
 
 const Interests = ({ content }: InterestsProps) => (
-    <>
-        <SectionTitle>Interests</SectionTitle>
-        <S.InterestsContainer>
-            {content?.map(({ title}, index) => <S.InterestItem key={index}>{title} </S.InterestItem>)}
-        </S.InterestsContainer>
-    </>
+  <>
+    <SectionTitle>Interests</SectionTitle>
+    <S.InterestsContainer>
+      {content?.map(({ title }, index) => (
+        <S.InterestItem key={index}>{title} </S.InterestItem>
+      ))}
+    </S.InterestsContainer>
+  </>
 );
 
 export default Interests;
