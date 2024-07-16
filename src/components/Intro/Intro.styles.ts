@@ -35,7 +35,7 @@ const Intro = styled.section`
         width: 100%;
         height: 100%;
         background: url(${backgroundImage}) no-repeat fixed center center/cover;
-        opacity: 0.15; /* Zmienna przezroczystość tła */
+        opacity: 0.15;
     }
 `;
 

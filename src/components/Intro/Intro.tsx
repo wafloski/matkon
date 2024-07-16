@@ -9,7 +9,6 @@ interface IntroProps {
 
 const Intro = ({ title, subtitle }: IntroProps) => {
     const introText = `I'm ${title}`;
-
     return (
         <S.Intro id='home'>
             <S.TypingContainer typingLength={introText.length}>

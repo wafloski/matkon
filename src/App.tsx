@@ -12,13 +12,11 @@ import Footer from './components/Footer/Footer.tsx';
 import Contact from './components/Contact/Contact.tsx';
 import Interests from './components/Interests/Interests.tsx';
 
-import { SectionContainer } from './components/Common/Common.ts';
+import { SectionContainer, LoaderContainer, Loader } from './components/Common/Common.ts';
 
 import { findContentByTitle } from './helpers/helpers.tsx';
 
-const GRAPHQL_URL = 'https://mkapi.dkonto.pl/graphql';
-
-export const fetchData = async () => {
+const fetchData = async () => {
     const query = `
         query NewQuery {
             posts {
@@ -46,7 +44,7 @@ export const fetchData = async () => {
                     title
                 }
             }
-            experiences {
+            experiences(where: {orderby: {field: MODIFIED, order: ASC}}) {
                 nodes {
                     experienceItem {
                         company
@@ -63,7 +61,7 @@ export const fetchData = async () => {
     `;
 
     try {
-        const response = await axios.post(GRAPHQL_URL, {
+        const response = await axios.post(import.meta.env.VITE_API_URL, {
             query,
         }, {
             headers: {
@@ -73,14 +71,14 @@ export const fetchData = async () => {
 
         return response.data;
     } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error('Error fetching data:', error);
         throw error;
     }
 };
 
 const App = () => {
     const [data, setData] = useState<any>([]);
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -110,13 +108,10 @@ const App = () => {
     const interests = data?.interests?.nodes;
     const experience = data?.experiences?.nodes;
 
-    console.log(data);
-    console.log(data?.experiences?.nodes);
-    console.log(experience);
-
     return (
         <>
-            <GlobalStyles />
+            {isLoading ? <LoaderContainer><Loader/></LoaderContainer> :
+            <><GlobalStyles />
             <Header />
             <Intro title={title} subtitle={subtitle}/>
             <SectionContainer id='about'>
@@ -137,7 +132,8 @@ const App = () => {
             <SectionContainer id='contact'>
                 <Contact mail={email} location={location} phone={phone}/>
             </SectionContainer>
-            <Footer content={footer}/>
+            <Footer content={footer}/></>
+            }
         </>
     );
 };

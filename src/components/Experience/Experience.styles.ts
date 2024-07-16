@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-const JobList = styled.ul`
-    list-style-type: none;
+const JobList = styled.div`
     padding: 0 40px;
 `;
 
-const JobItem  = styled.li`
-    margin-bottom: 40px;
+const JobItem  = styled.div`
+    margin-bottom: 60px;
 `;
 
 const Details = styled.div`
@@ -37,6 +36,9 @@ const Responsibilities = styled.div`
     ul {
         font-size: 16px;
         font-family: "Abel", sans-serif;
+        list-style-type: initial;
+        padding-left: 24px;
+        margin-top: 10px;
     }
 `;
 
