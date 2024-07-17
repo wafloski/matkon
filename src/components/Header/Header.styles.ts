@@ -16,6 +16,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   @media (min-width: 768px) {
     align-items: center;
@@ -28,18 +29,19 @@ const Logo = styled.div`
   font-weight: bold;
   color: white;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 20px;
   }
 `;
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
 
-  @media (max-width: 768px) {
-    width: 100%;
-    justify-content: flex-end;
+  @media (min-width: 768px) {
+    width: auto;
+    justify-content: center;
   }
 `;
 
@@ -89,11 +91,10 @@ const MenuButton = styled.button`
   border: none;
   color: white;
   font-size: 24px;
-  margin-left: auto;
+  text-align: right;
 
   @media (min-width: 768px) {
     display: none;
-    margin-left: initial;
   }
 `;
 
