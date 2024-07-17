@@ -22,16 +22,10 @@ const AboutMe = ({ content, title }: AboutMeProps) => (
       </div>
       <S.SocialsWrapper>
         <a href={githubURL} target="_blank">
-          <ReactSVG
-            src={githubSVG}
-            style={{ width: '30px', height: '30px', fill: '#fff' }}
-          />
+          <ReactSVG src={githubSVG} style={{ width: '30px', height: '30px', fill: '#fff' }} />
         </a>
         <a href={linkedinURL} target="_blank">
-          <ReactSVG
-            src={linkedinSVG}
-            style={{ width: '30px', height: '30px', fill: '#fff' }}
-          />
+          <ReactSVG src={linkedinSVG} style={{ width: '30px', height: '30px', fill: '#fff' }} />
         </a>
       </S.SocialsWrapper>
     </S.Bio>

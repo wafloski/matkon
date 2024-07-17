@@ -1,6 +1,6 @@
 import { SectionTitle } from '../Common/Common.ts';
 
-import * as S from './Interests.styled';
+import * as S from './Interests.styles';
 import { Interest } from '../../types/types.ts';
 
 interface InterestsProps {
@@ -11,9 +11,7 @@ const Interests = ({ content }: InterestsProps) => (
   <>
     <SectionTitle>Interests</SectionTitle>
     <S.InterestsContainer>
-      {content?.map(({ title }, index) => (
-        <S.InterestItem key={index}>{title} </S.InterestItem>
-      ))}
+      {content?.map(({ title }, index) => <S.InterestItem key={index}>{title} </S.InterestItem>)}
     </S.InterestsContainer>
   </>
 );

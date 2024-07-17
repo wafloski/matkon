@@ -17,10 +17,9 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
+  @media (min-width: 768px) {
+    align-items: center;
+    padding: 10px 20px;
   }
 `;
 
@@ -85,15 +84,16 @@ const MenuLink = styled(Link)`
 `;
 
 const MenuButton = styled.button`
-  display: none;
+  display: block;
   background: none;
   border: none;
   color: white;
   font-size: 24px;
+  margin-left: auto;
 
-  @media (max-width: 768px) {
-    display: block;
-    margin-left: auto;
+  @media (min-width: 768px) {
+    display: none;
+    margin-left: initial;
   }
 `;
 

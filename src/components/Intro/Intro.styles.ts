@@ -43,34 +43,39 @@ const TypingContainer = styled.div<TypingProps>`
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid #282c34;
-  width: 577px;
+  border-right: 2px solid #282c34;
+  width: calc(100% - 120px);
   ${({ typingLength }) => css`
     animation:
       ${typing} 3s steps(${typingLength}, end),
       ${blink} 1s step-end infinite;
-  `}
+  `};
+
+  @media (min-width: 768px) {
+    width: 577px;
+    border-right: 3px solid #282c34;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 60px;
+  font-size: 28px;
   margin: 0;
   display: inline-block;
   z-index: 1;
 
-  @media (max-width: 768px) {
-    font-size: 36px;
+  @media (min-width: 768px) {
+    font-size: 60px;
   }
 `;
 
 const Subtitle = styled.h2`
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 300;
   margin: 10px 0 0 0;
   z-index: 1;
 
-  @media (max-width: 768px) {
-    font-size: 20px;
+  @media (min-width: 768px) {
+    font-size: 24px;
   }
 `;
 
