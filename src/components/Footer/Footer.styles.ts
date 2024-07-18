@@ -5,7 +5,7 @@ const FooterContainer = styled.footer`
   justify-content: center;
   align-items: center;
   background-color: #333;
-  padding: 80px 0 100px;
+  padding: 40px 0;
   color: #fff;
   flex-direction: column;
 `;
@@ -18,4 +18,10 @@ const SocialsWrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-export { FooterContainer, SocialsWrapper };
+const Logo = styled.img`
+  display: block;
+  height: 32px;
+  margin-top: 40px;
+`;
+
+export { FooterContainer, SocialsWrapper, Logo };

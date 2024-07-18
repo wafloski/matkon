@@ -1,7 +1,8 @@
-import * as S from './Header.styles.ts';
 import { useState } from 'react';
-
+import { Link } from 'react-scroll';
 import logoWhite from '../../assets/logo_white.png';
+
+import * as S from './Header.styles.ts';
 
 const menuItems = [
   {
@@ -30,7 +31,9 @@ const Header = () => {
   };
   return (
     <S.Header>
-      <S.Logo src={logoWhite} alt="Mateusz Konopka Software Engineer" />
+      <Link to="home" smooth={true} duration={500} style={{ cursor: 'pointer' }}>
+        <S.Logo src={logoWhite} alt="Mateusz Konopka Software Engineer" />
+      </Link>
       <S.MenuButton onClick={toggleMenu}>&#9776;</S.MenuButton>
       <S.Nav>
         <S.Menu isOpen={isOpen}>
