@@ -24,14 +24,9 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-
-  @media (min-width: 768px) {
-    font-size: 20px;
-  }
+const Logo = styled.img`
+  display: block;
+  height: 32px;
 `;
 
 const Nav = styled.nav`

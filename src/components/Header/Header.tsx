@@ -1,6 +1,8 @@
 import * as S from './Header.styles.ts';
 import { useState } from 'react';
 
+import logoWhite from '../../assets/logo_white.png';
+
 const menuItems = [
   {
     id: 'home',
@@ -28,7 +30,7 @@ const Header = () => {
   };
   return (
     <S.Header>
-      <S.Logo>MyLogo</S.Logo>
+      <S.Logo src={logoWhite} alt="Mateusz Konopka Software Engineer" />
       <S.MenuButton onClick={toggleMenu}>&#9776;</S.MenuButton>
       <S.Nav>
         <S.Menu isOpen={isOpen}>
