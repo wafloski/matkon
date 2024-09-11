@@ -38,17 +38,17 @@ const fetchData = async () => {
                     }
                 }
             }
-            skills(first: 20, where: {orderby: {field: MODIFIED, order: ASC}}) {
+            skills(first: 20, where: {orderby: {field: DATE, order: ASC}}) {
                 nodes {
                     title
                 }
             }
-            interests(where: {orderby: {field: MODIFIED, order: ASC}}) {
+            interests(first: 20, where: {orderby: {field: DATE, order: ASC}}) {
                 nodes {
                     title
                 }
             }
-            experiences(where: {orderby: {field: MODIFIED, order: ASC}}) {
+            experiences(first: 20, where: {orderby: {field: DATE, order: ASC}}) {
                 nodes {
                     experienceItem {
                         company
